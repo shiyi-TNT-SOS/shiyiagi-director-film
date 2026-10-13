@@ -112,7 +112,7 @@ agent_created: true
 
 出片不是"生成一次就完"，而是 **抽卡 → 挑选 → 剪接** 三轮。完整方法见 `references/production.md`：
 
-1. **一致性**：先建角色卡（含「此刻状态」行）与场景卡，再决定要不要上参考图 / 首尾帧（三级武器表）。接力链别超过 4–5 跳，每 3 跳用参考图回锁一次
+1. **一致性**：先建角色卡（含「此刻状态」行）与场景卡，再决定要不要上参考图 / 首尾帧（三级武器表）。接力链别超过 4–5 跳，每 3 跳用参考图回锁一次；**跨镜脸/景/道具不变另走 `shiyiagi-character-scene-consistency`**（建库+三级接力，见其 quickstart）
 2. **抽卡**：情绪高点与人物特写出 4–8 条，过渡空镜 1–2 条；**一次只改一个变量**
 3. **挑选**：候选片按「能用 / 能修 / 废」三类归档，避免为同一个问题重抽两次
 4. **剪接**：轴线与视线方向跨镜连续；**情绪高点不要切**、停留 ≥ 2 秒；切点选在动作完成前
@@ -136,6 +136,7 @@ agent_created: true
 - `compliance.md` — 叙事内容合规红线：真实事件改编、名誉权、未成年人、尺度与平台规则。
 - `troubleshooting.md` — **生成失败排错表**（症状→原因→改法）+ 负面词库 + 排错流程。出废片时查这份。
 - `platform-specs.md` — **发布层**：各平台尺寸 / 时长 / 封面速查 + 画幅适配（含 2.39:1 ↔ 竖屏的三种方案）+ 安全区 + 导出参数 + 多平台分发节奏。发布前必加载。
+- `smoke-film-convenience.md` — **行为冒烟示例（等级 2）**：雨夜便利店（孤独→温暖），跑通情绪镜头设计→分镜表(含戏剧功能)→逐镜提示词，附自检。
 
 ## 自检清单
 
@@ -162,6 +163,7 @@ agent_created: true
 ## Notes
 
 - 本 skill 只做**创意与分镜交付**，不负责渲染、剪辑、发布。出片交给 Seedance / 即梦 / 可灵 / Grok 等引擎。
+- 跨镜头一致性（多镜/多集内容要不变脸、不变景、不变道具）：先走 `shiyiagi-character-scene-consistency` 建角色档案/场景资产/道具清单并锁三级接力，再回本 skill 出分镜——它是本导演系列的「总控层」，专管脸/景/道具跨镜不漂。
 - 本 skill 由 `shiyiagi-director-film`（轻量四要素）与旧 `director-film-story`（叙事方法论）于 2026-10 合并而成，作为系列唯一的 story 分支；动作分支统一走 `shiyiagi-director-action`。
 - 与 `shiyiagi-director-action` 的关系：一部动作片两者都用——先用本 skill 立人物与结构，再用 `shiyiagi-director-action` 设计打斗；**打斗必须服务于人物弧光，否则是炫技**。
 - 与 `shiyiagi-director-ad-tvc`、`shiyiagi-director-story-selling` 的分工：广告片追求调性记忆点，带货追求转化，本 skill 追求叙事推进与情绪真实。
